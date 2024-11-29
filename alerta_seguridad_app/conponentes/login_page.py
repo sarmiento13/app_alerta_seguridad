@@ -1,6 +1,6 @@
 import reflex as rx
 
-def index() -> rx.Component:
+def login_page() -> rx.Component:
     return rx.card(
         rx.vstack(
             rx.flex(
@@ -76,9 +76,9 @@ def index() -> rx.Component:
                 spacing="2",
                 width="100%",
             ),
-            rx.button("INICIAR SESION", size="3", width="100%"),
+            rx.button("INICIAR SESION", size="3",width="100%",on_click=lambda:rx.redirect("/home")),
             rx.hstack(
-                rx.divider(margin="0"),
+                rx.divider(margin="0",),
                 rx.text(
                     "O continuar con",
                     white_space="nowrap",
@@ -114,4 +114,5 @@ def index() -> rx.Component:
         size="4",
         max_width="28em",
         width="100%",
+        justify="center",
     )

@@ -1,5 +1,6 @@
 import reflex as rx
-from .conponentes.login_page import index
+from .conponentes.login_page import login_page
+from .conponentes.home import home
 
 class ExampleState(rx.State):
     colors: list[str] = [
@@ -41,7 +42,7 @@ def index():
                         "INICIAR SESIÓN",
                         size="4",
                         padding="1em",
-                        on_click=lambda: rx.redirect("/.conponentes.login_page"),
+                        on_click=lambda: rx.redirect("/login_page"),
                         margin="1em",
                     ),
                     rx.button(
@@ -71,5 +72,6 @@ def index():
 
 app = rx.App()
 app.add_page(index, route="/")
-app.add_page(index, route="/login_page")
+app.add_page(login_page, route="/login_page")
+app.add_page(home, route="/home")
 
