@@ -1,120 +1,75 @@
 import reflex as rx
-def index() -> rx.Component:
-    return rx.card(
-        rx.vstack(
-            rx.flex(
-                rx.image(
-                    src="/image.png",
-                    width="2.5em",
-                    height="auto",
-                    border_radius="25%",
-                ),
+from .conponentes.login_page import index
+
+class ExampleState(rx.State):
+    colors: list[str] = [
+        "black",
+        "red",
+        "green",
+        "blue",
+        "purple",
+    ]
+    index: int = 0
+
+    @rx.event
+    def next_color(self):
+        self.index = (self.index + 1) % len(self.colors)
+
+    @rx.var
+    def color(self) -> str:
+        return self.colors[self.index]
+
+def index():
+    return rx.center(
+        rx.box(
+            rx.vstack(
                 rx.heading(
-                    "Inicia secion en tu cuenta",
-                    size="6",
-                    as_="h2",
-                    width="100%",
+                    "Bienvenido a Secure Path!",
+                    size="8",  # Aumentar tamaño del texto
+                    on_click=ExampleState.next_color,
+                    color=ExampleState.color,
+                    _hover={"cursor": "pointer"},
                 ),
-                rx.hstack(
-                    rx.text(
-                        "Nuevo aqui?",
-                        size="3",
-                        text_align="left",
+                rx.text(
+                    "Protegiendo tus caminos, asegurando tus destinos.",  # Breve descripción
+                    size="4",
+                    color="gray",
+                    margin="1em 0",
+                ),
+                rx.vstack(
+                    rx.button(
+                        "INICIAR SESIÓN",
+                        size="4",
+                        padding="1em",
+                        on_click=lambda: rx.redirect("/.conponentes.login_page"),
+                        margin="1em",
                     ),
-                    rx.link("inscribirse", href="#", size="3"),
+                    rx.button(
+                        "REGISTRARTE",
+                        size="4",
+                        padding="1em",
+                        on_click=lambda: rx.redirect("/register"),
+                        margin="1em",
+                    ),
                     spacing="2",
-                    opacity="0.8",
-                    width="100%",
+                    align="center",  # Alinear los botones en el centro
                 ),
-                justify="start",
-                direction="column",
-                spacing="4",
-                width="100%",
+                spacing="6",
+                align="center",  # Alinear el contenido del vstack en el centro
             ),
-            rx.vstack(
-                rx.text(
-                    "correo electronico",
-                    size="3",
-                    weight="medium",
-                    text_align="left",
-                    width="100%",
-                ),
-                rx.input(
-                    rx.input.slot(rx.icon("user")),
-                    placeholder="nombre@gmail.com",
-                    type="email",
-                    size="3",
-                    width="100%",
-                ),
-                spacing="2",
-                justify="start",
-                width="100%",
-            ),
-            rx.vstack(
-                rx.hstack(
-                    rx.text(
-                        "contraseña ",
-                        size="3",
-                        weight="medium",
-                    ),
-                    rx.link(
-                        "has olvidado tu contraseña ?",
-                        href="#",
-                        size="3",
-                    ),
-                    justify="between",
-                    width="100%",
-                ),
-                rx.input(
-                    rx.input.slot(rx.icon("lock")),
-                    placeholder="Introduce su contraseña",
-                    type="password",
-                    size="3",
-                    width="100%",
-                ),
-                spacing="2",
-                width="100%",
-            ),
-            rx.button("INICIAR SESION", size="3", width="100%",on_click=rx.redirect(
-            "/home"
-        ),),
-            rx.hstack(
-                rx.divider(margin="0"),
-                rx.text(
-                    "O continuar con",
-                    white_space="nowrap",
-                    weight="medium",
-                ),
-                rx.divider(margin="0"),
-                align="center",
-                width="100%",
-            ),
-            rx.center(
-                rx.icon_button(
-                    rx.icon(tag="github"),
-                    variant="soft",
-                    size="3",
-                ),
-                rx.icon_button(
-                    rx.icon(tag="facebook"),
-                    variant="soft",
-                    size="3",
-                ),
-                rx.icon_button(
-                    rx.icon(tag="twitter"),
-                    variant="soft",
-                    size="3",
-                ),
-                spacing="4",
-                direction="row",
-                width="100%",
-            ),
-            spacing="6",
-            width="100%",
+            padding="2em",
+            background="linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%)",  # Fondo con gradiente en tonos pastel
+            border_radius="1em",  # Bordes más redondeados
+            box_shadow="0 8px 16px rgba(0, 0, 0, 0.2)",  # Sombra más pronunciada
+            border="2px solid #96e6a1",  # Borde con color llamativo
+            align_items="center",  # Centrar el contenido dentro del box
         ),
-        size="4",
-        max_width="28em",
-        width="100%",
+        height="100vh",
+        background="linear-gradient(135deg, #667eea 0%, #764ba2 100%)",  # Fondo de la página con gradiente
+        justify="center",
     )
-app=rx.App()
-app.add_page(index)
+
+app = rx.App()
+app.add_page(index, route="/")
+app.add_page(index, route="/login_page")
+
