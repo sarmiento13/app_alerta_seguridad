@@ -114,5 +114,6 @@ def login_page() -> rx.Component:
         size="4",
         max_width="28em",
         width="100%",
-        justify="center",
+        aling_items="center",
+        justify_contens="center",
     )

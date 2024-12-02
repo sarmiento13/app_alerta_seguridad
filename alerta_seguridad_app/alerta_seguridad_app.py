@@ -1,6 +1,7 @@
 import reflex as rx
 from .conponentes.login_page import login_page
 from .conponentes.home import home
+from .conponentes.inicio import inicio
 
 class ExampleState(rx.State):
     colors: list[str] = [
@@ -74,4 +75,5 @@ app = rx.App()
 app.add_page(index, route="/")
 app.add_page(login_page, route="/login_page")
 app.add_page(home, route="/home")
+app.add_page(inicio, route="/inicio")
 

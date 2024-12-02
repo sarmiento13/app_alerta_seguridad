@@ -7,21 +7,25 @@ def home() -> rx.Component:
             rx.hstack(
                 rx.hstack(
                     rx.image(
-                        src="/logo.jpg",
+                        src="/image.png",  # Ruta de la imagen del logo
                         width="2.25em",
                         height="auto",
                         border_radius="25%",
                     ),
                     rx.heading(
-                        "Secure Phat", size="7", weight="bold"
+                        "Camino Seguro", size="7", weight="bold"
                     ),
                     align_items="center",
                 ),
                 rx.hstack(
-                    home01("Home", "/#"),
-                    home01("About", "/#"),
-                    home01("Pricing", "/#"),
-                    home01("Contact", "/#"),
+                    home01(
+                        "Inicio", 
+                        "/",  # Redirigir a /login_page
+                    ),
+                    home01("Rutas seguras", "/#"),
+                    home01("Precios", "/#"),
+                    home01("Contacto", "/#"),
+                    home01("Acerca de", "/inicio"),
                     spacing="5",
                 ),
                 rx.menu.root(
@@ -33,10 +37,11 @@ def home() -> rx.Component:
                         )
                     ),
                     rx.menu.content(
-                        rx.menu.item("Settings"),
-                        rx.menu.item("Earnings"),
+                        rx.menu.item("Configuración"),
+                        rx.menu.item("Marketing y Promociones"),
                         rx.menu.separator(),
-                        rx.menu.item("Log out"),
+                        rx.menu.item("Perfil"),
+                        rx.menu.item("Cerrar Sesión"),
                     ),
                     justify="end",
                 ),
@@ -53,8 +58,14 @@ def home() -> rx.Component:
                         height="auto",
                         border_radius="25%",
                     ),
+                    rx.image(
+                        src="/path_to_your_image.jpg",  # Nueva imagen junto al texto
+                        width="3em",  # Ajusta el tamaño según lo necesites
+                        height="auto",
+                        border_radius="10%",
+                    ),
                     rx.heading(
-                        "Reflex", size="6", weight="bold"
+                        "Camino Seguro", size="6", weight="bold"
                     ),
                     align_items="center",
                 ),
@@ -67,10 +78,10 @@ def home() -> rx.Component:
                         )
                     ),
                     rx.menu.content(
-                        rx.menu.item("Settings"),
-                        rx.menu.item("Earnings"),
+                        rx.menu.item("Configuración"),
+                        rx.menu.item("Ganancias"),
                         rx.menu.separator(),
-                        rx.menu.item("Log out"),
+                        rx.menu.item("Cerrar Sesión"),
                     ),
                     justify="end",
                 ),
@@ -85,3 +96,4 @@ def home() -> rx.Component:
         # z_index="5",
         width="100%",
     )
+
