@@ -117,3 +117,4 @@ def login_page() -> rx.Component:
         aling_items="center",
         justify_contens="center",
     )
+
